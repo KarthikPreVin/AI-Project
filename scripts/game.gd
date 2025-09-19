@@ -26,6 +26,7 @@ var shapes = [
 	]
 
 var BOARD = []
+var MOVES = []
 
 var cell_dict = {
 	"YELLOW_DIAMOND": 0,
@@ -124,7 +125,11 @@ func _ready():
 func generate_board():
 	for i in range(50):
 		var new_row = []
+		var another_row = []
 		for j in range(50):
+			another_row.append("")
+			if i==25 and j==25:
+				new_row.append("BLANK")
 			var rand_val = randf()
 			if (rand_val<0.5):
 				new_row.append("BLANK")
@@ -144,6 +149,7 @@ func generate_board():
 			else:
 				new_row.append("WALL")
 		BOARD.append(new_row)
+		MOVES.append(another_row)
 		
 func display_board():
 	for i in range(50):
@@ -161,7 +167,8 @@ func display_board():
 func start_game():
 	var rand_val = randi_range(0,35)
 	var tile_str = tile_dict.find_key(rand_val)
-	BOARD[25][25]=tile_str
+	MOVES[25][25]=tile_str
+	
 	var tile = Sprite2D.new()
 	tile.texture = tile_map
 	tile.hframes = COLUMNS_TILES
