@@ -6,7 +6,7 @@
 script = ExtResource("1_lnu2h")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1275, 1275)
+position = Vector2(1250, 1250)
 zoom = Vector2(2, 2)
 
 [node name="Cells" type="Node2D" parent="."]
