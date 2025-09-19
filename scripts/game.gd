@@ -15,6 +15,7 @@ var COLUMNS_TILES = 6
 var ROWS_TILES = 6
 var tile_map = load(PATH_TILES)
 
+
 var shapes = [
 	"RED_SQUARE","BLUE_SQUARE","GREEN_SQUARE","YELLOW_SQUARE","VIOLET_SQUARE","ORANGE_SQUARE",
 	"RED_CIRCLE","BLUE_CIRCLE","GREEN_CIRCLE","YELLOW_CIRCLE","VIOLET_CIRCLE","ORANGE_CIRCLE",
@@ -168,10 +169,8 @@ func start_game():
 	tile.frame = rand_val
 	tiles.add_child(tile)
 	tile.position = Vector2(1250,1250)
-	
-	
-	
-	
+
+
 #tests
 func test_board_create():
 	var c1=0
