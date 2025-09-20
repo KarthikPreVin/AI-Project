@@ -3,6 +3,8 @@ extends Node2D
 @onready var cells: Node2D = $Cells
 @onready var tiles: Node2D = $Tiles
 
+const Utils = preload("res://scripts/algorithms.gd")
+
 var SPRITE_SIZE = 50
 
 var PATH_CELLS = "res://assets/cells.png"
@@ -166,17 +168,18 @@ func display_board():
 			
 func start_game():
 	var rand_val = randi_range(0,35)
-	var tile_str = tile_dict.find_key(rand_val)
-	MOVES[25][25]=tile_str
-	
+	place_tile(rand_val,25,25)
+
+func place_tile(tile_index,pos_x,pos_y):
+	var tile_str = tile_dict.find_key(tile_index)
+	MOVES[pos_y][pos_x]=tile_str
 	var tile = Sprite2D.new()
 	tile.texture = tile_map
 	tile.hframes = COLUMNS_TILES
 	tile.vframes = ROWS_TILES
-	tile.frame = rand_val
+	tile.frame = tile_index
 	tiles.add_child(tile)
-	tile.position = Vector2(1250,1250)
-
+	tile.position = Vector2(50*pos_x,50*pos_y)
 
 #tests
 func test_board_create():
