@@ -6,21 +6,54 @@
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lnu2h")
 
+[node name="Cells" type="Node2D" parent="."]
+
+[node name="Tiles" type="Node2D" parent="."]
+position = Vector2(-1, 0)
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="PlaceTileButton" type="Button" parent="UI"]
+custom_minimum_size = Vector2(200, 60)
+offset_left = 1015.0
+offset_top = 1313.0
+offset_right = 1215.0
+offset_bottom = 1373.0
+text = "PlaceTile"
+
+[node name="SwapTileButton" type="Button" parent="UI"]
+custom_minimum_size = Vector2(200, 60)
+offset_left = 1291.0
+offset_top = 1309.0
+offset_right = 1491.0
+offset_bottom = 1369.0
+text = "SwapTile
+"
+
+[node name="AI Score" type="Label" parent="UI"]
+custom_minimum_size = Vector2(200, 60)
+offset_left = 993.0
+offset_top = 1144.0
+offset_right = 1193.0
+offset_bottom = 1204.0
+text = "0"
+
+[node name="Player Score" type="Label" parent="UI"]
+custom_minimum_size = Vector2(200, 60)
+offset_left = 1287.0
+offset_top = 1117.0
+offset_right = 1487.0
+offset_bottom = 1200.0
+text = "0"
+
 [node name="Viewport" type="Camera2D" parent="."]
 position = Vector2(1250, 1250)
 zoom = Vector2(2, 2)
-limit_left = -50
-limit_top = -50
-limit_right = 2500
-limit_bottom = 2500
+limit_left = 385
+limit_top = 157
+limit_right = 2451
+limit_bottom = 2715
 limit_smoothed = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 script = ExtResource("2_yqjtg")
-
-[node name="UI" type="Node2D" parent="Viewport"]
-position = Vector2(-1250, -1250)
-
-[node name="Cells" type="Node2D" parent="."]
-
-[node name="Tiles" type="Node2D" parent="."]
