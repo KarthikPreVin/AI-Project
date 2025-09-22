@@ -11,49 +11,45 @@ script = ExtResource("1_lnu2h")
 [node name="Tiles" type="Node2D" parent="."]
 position = Vector2(-1, 0)
 
-[node name="UI" type="Node2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1250, 1250)
+zoom = Vector2(2, 2)
+script = ExtResource("2_yqjtg")
 
-[node name="PlaceTileButton" type="Button" parent="UI"]
+[node name="UI" type="Node2D" parent="Camera2D"]
+position = Vector2(1, 0)
+
+[node name="PlaceTileButton" type="Button" parent="Camera2D/UI"]
 custom_minimum_size = Vector2(200, 60)
-offset_left = 1015.0
-offset_top = 1313.0
-offset_right = 1215.0
-offset_bottom = 1373.0
+offset_left = -240.0
+offset_top = 77.0
+offset_right = -40.0
+offset_bottom = 137.0
 text = "PlaceTile"
 
-[node name="SwapTileButton" type="Button" parent="UI"]
+[node name="SwapTileButton" type="Button" parent="Camera2D/UI"]
 custom_minimum_size = Vector2(200, 60)
-offset_left = 1291.0
-offset_top = 1309.0
-offset_right = 1491.0
-offset_bottom = 1369.0
+offset_left = 76.0
+offset_top = 75.0
+offset_right = 276.0
+offset_bottom = 135.0
 text = "SwapTile
 "
 
-[node name="AI Score" type="Label" parent="UI"]
+[node name="AIScore" type="Label" parent="Camera2D/UI"]
 custom_minimum_size = Vector2(200, 60)
-offset_left = 993.0
-offset_top = 1144.0
-offset_right = 1193.0
-offset_bottom = 1204.0
-text = "0"
+offset_left = -93.0
+offset_top = -165.0
+offset_right = 107.0
+offset_bottom = -105.0
+text = "AI: 0"
+horizontal_alignment = 1
 
-[node name="Player Score" type="Label" parent="UI"]
+[node name="PlayerScore" type="Label" parent="Camera2D/UI"]
 custom_minimum_size = Vector2(200, 60)
-offset_left = 1287.0
-offset_top = 1117.0
-offset_right = 1487.0
-offset_bottom = 1200.0
-text = "0"
-
-[node name="Viewport" type="Camera2D" parent="."]
-position = Vector2(1250, 1250)
-zoom = Vector2(2, 2)
-limit_left = 385
-limit_top = 157
-limit_right = 2451
-limit_bottom = 2715
-limit_smoothed = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-script = ExtResource("2_yqjtg")
+offset_left = 1160.0
+offset_top = 1374.0
+offset_right = 1360.0
+offset_bottom = 1434.0
+text = "Player: 0"
+horizontal_alignment = 1
