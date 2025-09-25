@@ -16,40 +16,95 @@ position = Vector2(1250, 1250)
 zoom = Vector2(2, 2)
 script = ExtResource("2_yqjtg")
 
-[node name="UI" type="Node2D" parent="Camera2D"]
-position = Vector2(1, 0)
+[node name="UI" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="PlaceTileButton" type="Button" parent="Camera2D/UI"]
+[node name="ScoreBoard" type="ColorRect" parent="Camera2D/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.52
+anchor_top = 0.133
+anchor_right = 0.52
+anchor_bottom = 0.133
+offset_left = -283.0
+offset_top = -154.0
+offset_right = -99.0
+offset_bottom = -98.0
+color = Color(0, 0, 0, 0.643137)
+
+[node name="AIScore" type="Label" parent="Camera2D/UI/ScoreBoard"]
 custom_minimum_size = Vector2(200, 60)
-offset_left = -251.0
+offset_left = 56.0
+offset_right = 256.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "AI : 0"
+
+[node name="PlayerScore" type="Label" parent="Camera2D/UI/ScoreBoard"]
+custom_minimum_size = Vector2(200, 60)
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 216.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Player	: 0"
+
+[node name="PlaceTilesButton" type="Button" parent="Camera2D/UI"]
+custom_minimum_size = Vector2(200, 60)
+offset_left = -267.0
 offset_top = 70.0
-offset_right = -51.0
+offset_right = -67.0
 offset_bottom = 130.0
-text = "PlaceTile"
+scale = Vector2(0.763854, 1)
+text = "Place Tiles"
 
-[node name="SwapTileButton" type="Button" parent="Camera2D/UI"]
+[node name="ViewAIButton" type="Button" parent="Camera2D/UI"]
 custom_minimum_size = Vector2(200, 60)
-offset_left = 53.0
+offset_left = -83.0
 offset_top = 70.0
-offset_right = 253.0
+offset_right = 117.0
 offset_bottom = 130.0
-text = "SwapTile
-"
+scale = Vector2(0.763854, 1)
+text = "View AI Tiles"
 
-[node name="AIScore" type="Label" parent="Camera2D/UI"]
+[node name="SwapTilesButton" type="Button" parent="Camera2D/UI"]
 custom_minimum_size = Vector2(200, 60)
-offset_left = -99.0
-offset_top = -146.0
-offset_right = 101.0
-offset_bottom = -86.0
-text = "AI: 0"
+offset_left = 101.0
+offset_top = 70.0
+offset_right = 301.0
+offset_bottom = 130.0
+scale = Vector2(0.763854, 1)
+text = "Swap All Tiles"
+
+[node name="PlayerTiles" type="ColorRect" parent="Camera2D/UI"]
+offset_left = 309.0
+offset_top = 14.0
+offset_right = 485.0
+offset_bottom = 166.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Label" type="Label" parent="Camera2D/UI/PlayerTiles"]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "PLAYER TILES"
 horizontal_alignment = 1
 
-[node name="PlayerScore" type="Label" parent="Camera2D/UI"]
-custom_minimum_size = Vector2(200, 60)
-offset_left = -99.0
-offset_top = 110.0
-offset_right = 101.0
-offset_bottom = 170.0
-text = "Player: 0"
+[node name="PlayerTiles2" type="ColorRect" parent="Camera2D/UI"]
+offset_left = 309.0
+offset_top = -154.0
+offset_right = 485.0
+offset_bottom = -2.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Label" type="Label" parent="Camera2D/UI/PlayerTiles2"]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "AI TILES"
 horizontal_alignment = 1

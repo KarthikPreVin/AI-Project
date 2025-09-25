@@ -114,6 +114,9 @@ var tile_dict = {
 	"T_ORANGE_CLOVER": 35,
 }
 
+var player_tiles = []
+var ai_tiles = []
+
 func _ready():
 	randomize()
 	#load_cells()
@@ -121,6 +124,7 @@ func _ready():
 	generate_board()
 	display_board()
 	start_game()
+	
 	
 
 		
@@ -169,6 +173,14 @@ func display_board():
 func start_game():
 	var rand_val = randi_range(0,35)
 	place_tile(rand_val,25,25)
+	for i in range(6):
+		rand_val = randi_range(0,35)
+		player_tiles.append(rand_val)
+		rand_val = randi_range(0,35)
+		ai_tiles.append(rand_val)
+		
+		
+	
 
 func place_tile(tile_index,pos_x,pos_y):
 	var tile_str = tile_dict.find_key(tile_index)
