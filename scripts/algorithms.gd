@@ -43,5 +43,6 @@ static func calc_score(BOARD,pos_x,pos_y,tile):
 	var cell = BOARD[pos_y][pos_x]
 	
 	
+	
 static func AI_move_search(MOVES,BOARD,tiles_in_hand):
 	pass

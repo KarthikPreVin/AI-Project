@@ -76,46 +76,52 @@ var cell_dict = {
 }
 
 var tile_dict = {
-	"T_BLUE_SQUARE": 0,
-	"T_BLUE_DIAMOND": 1,
-	"T_BLUE_4_STAR": 2,
-	"T_BLUE_CIRCLE": 3,
-	"T_BLUE_8_STAR": 4,
-	"T_BLUE_CLOVER": 5,
-	"T_RED_SQUARE": 6,
-	"T_RED_DIAMOND": 7,
-	"T_RED_4_STAR": 8,
-	"T_RED_CIRCLE": 9,
-	"T_RED_8_STAR": 10,
-	"T_RED_CLOVER": 11,
-	"T_GREEN_SQUARE": 12,
-	"T_GREEN_DIAMOND": 13,
-	"T_GREEN_4_STAR": 14,
-	"T_GREEN_CIRCLE": 15,
-	"T_GREEN_8_STAR": 16,
-	"T_GREEN_CLOVER": 17,
-	"T_YELLOW_SQUARE": 18,
-	"T_YELLOW_DIAMOND": 19,
-	"T_YELLOW_4_STAR": 20,
-	"T_YELLOW_CIRCLE": 21,
-	"T_YELLOW_8_STAR": 22,
-	"T_YELLOW_CLOVER": 23,
-	"T_VIOLET_SQUARE": 24,
-	"T_VIOLET_DIAMOND": 25,
-	"T_VIOLET_4_STAR": 26,
-	"T_VIOLET_CIRCLE": 27,
-	"T_VIOLET_8_STAR": 28,
-	"T_VIOLET_CLOVER": 29,
-	"T_ORANGE_SQUARE": 30,
-	"T_ORANGE_DIAMOND": 31,
-	"T_ORANGE_4_STAR": 32,
-	"T_ORANGE_CIRCLE": 33,
-	"T_ORANGE_8_STAR": 34,
-	"T_ORANGE_CLOVER": 35,
+	"TBLUE_SQUARE": 0,
+	"TBLUE_DIAMOND": 1,
+	"TBLUE_4_STAR": 2,
+	"TBLUE_CIRCLE": 3,
+	"TBLUE_8_STAR": 4,
+	"TBLUE_CLOVER": 5,
+	"TRED_SQUARE": 6,
+	"TRED_DIAMOND": 7,
+	"TRED_4_STAR": 8,
+	"TRED_CIRCLE": 9,
+	"TRED_8_STAR": 10,
+	"TRED_CLOVER": 11,
+	"TGREEN_SQUARE": 12,
+	"TGREEN_DIAMOND": 13,
+	"TGREEN_4_STAR": 14,
+	"TGREEN_CIRCLE": 15,
+	"TGREEN_8_STAR": 16,
+	"TGREEN_CLOVER": 17,
+	"TYELLOW_SQUARE": 18,
+	"TYELLOW_DIAMOND": 19,
+	"TYELLOW_4_STAR": 20,
+	"TYELLOW_CIRCLE": 21,
+	"TYELLOW_8_STAR": 22,
+	"TYELLOW_CLOVER": 23,
+	"TVIOLET_SQUARE": 24,
+	"TVIOLET_DIAMOND": 25,
+	"TVIOLET_4_STAR": 26,
+	"TVIOLET_CIRCLE": 27,
+	"TVIOLET_8_STAR": 28,
+	"TVIOLET_CLOVER": 29,
+	"TORANGE_SQUARE": 30,
+	"TORANGE_DIAMOND": 31,
+	"TORANGE_4_STAR": 32,
+	"TORANGE_CIRCLE": 33,
+	"TORANGE_8_STAR": 34,
+	"TORANGE_CLOVER": 35,
 }
 
 var player_tiles = []
+var player_tiles_nodes = []
+@onready var player_tiles_box = $Camera2D/UI/PlayerTiles
 var ai_tiles = []
+var ai_tiles_nodes = []
+@onready var ai_tiles_box = $Camera2D/UI/AITiles
+var ai_toggle = false
+var player_toggle = false
 
 func _ready():
 	randomize()
@@ -124,10 +130,7 @@ func _ready():
 	generate_board()
 	display_board()
 	start_game()
-	
-	
 
-		
 func generate_board():
 	for i in range(50):
 		var new_row = []
@@ -173,14 +176,31 @@ func display_board():
 func start_game():
 	var rand_val = randi_range(0,35)
 	place_tile(rand_val,25,25)
+	var temp
+	
+	var loc = [Vector2(25+5,25+34),Vector2(25+63,25+34),Vector2(25+121,25+34),Vector2(25+5,25+93),Vector2(25+63,25+93),Vector2(25+121,25+93)]
 	for i in range(6):
 		rand_val = randi_range(0,35)
 		player_tiles.append(rand_val)
+		temp = Sprite2D.new()
+		temp.texture = tile_map
+		temp.hframes = COLUMNS_TILES
+		temp.vframes = ROWS_TILES
+		temp.frame = rand_val
+		player_tiles_nodes.append(temp)
+		player_tiles_box.add_child(temp)
+		temp.position=loc[i]
+		
 		rand_val = randi_range(0,35)
 		ai_tiles.append(rand_val)
-		
-		
-	
+		temp = Sprite2D.new()
+		temp.texture = tile_map
+		temp.hframes = COLUMNS_TILES
+		temp.vframes = ROWS_TILES
+		temp.frame = rand_val
+		ai_tiles_nodes.append(temp)
+		ai_tiles_box.add_child(temp)
+		temp.position=loc[i]
 
 func place_tile(tile_index,pos_x,pos_y):
 	var tile_str = tile_dict.find_key(tile_index)
@@ -217,3 +237,24 @@ func test_board_create():
 		print("ERROR 1")
 	elif (len(BOARD)!=50):
 		print("ERROR 2")
+
+
+func _on_view_ai_button_pressed() -> void:
+	if player_toggle:
+		player_toggle = not player_toggle
+		player_tiles_box.position = Vector2(400,-100)
+	ai_toggle = not ai_toggle
+	if ai_toggle:
+		ai_tiles_box.position = Vector2(-274,-82)
+	else:
+		ai_tiles_box.position = Vector2(400,-100)
+
+func _on_place_tiles_button_pressed() -> void:
+	if ai_toggle:
+		ai_toggle = not ai_toggle
+		ai_tiles_box.position = Vector2(400,-100)
+	player_toggle = not player_toggle
+	if player_toggle:
+		player_tiles_box.position = Vector2(-274,-82)
+	else:
+		player_tiles_box.position = Vector2(400,-100)
